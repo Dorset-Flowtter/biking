@@ -3,6 +3,8 @@
 
 .vs/
 .vscode/
+appsettings.json
+appsettings.Development.json
 
 ###################
 # compiled source #
