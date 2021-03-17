@@ -1,19 +1,21 @@
-﻿using DublinBike.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using DublinBike.Data;
+using DublinBike.Models;
+
 
 namespace DublinBike.Controllers
 {
     public class BikeController : Controller
     {
-        private readonly MvcBikeContext _context;
+        private readonly MvcMovieContext _context;
 
-        public MvcBikeContext(MvcBikeContext context)
+        public MoviesController(MvcMovieContext context)
         {
             _context = context;
         }
@@ -43,14 +45,19 @@ namespace DublinBike.Controllers
             return View();
         }
 
+        private bool BikeExists(int id)
+        {
+            return _context.Bike.Any(e => e.Number == id);
+        }
+
         // POST: Bike/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Bike bike)
+        public async Task<IActionResult> Edit(int id, [Bind("Number,ContractName,Name,Address,Latitude,Longitude,Banking,AvailableBikes,AvailableStands,Capacity,Status")] Bike bike)
         {
-            if (id != bike.Id)
+            if (id != bike.Number)
             {
                 return NotFound();
             }
@@ -59,12 +66,12 @@ namespace DublinBike.Controllers
             {
                 try
                 {
-                    _context.Update(movie);
+                    _context.Update(bike);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MovieExists(movie.Id))
+                    if (!BikeExists(bike.Number))
                     {
                         return NotFound();
                     }
@@ -75,7 +82,7 @@ namespace DublinBike.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(movie);
+            return View(bike);
         }
 
 

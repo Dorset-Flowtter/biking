@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MovieListings.Data
+namespace DublinBike.Data
 {
     public class MvcBikeContext : DbContext
     {
