@@ -29,7 +29,7 @@ namespace DublinBike.Controllers
         {
             return View();
         }
-        
+
         public IActionResult Delete()
         {
             return View();
