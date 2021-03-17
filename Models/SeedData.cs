@@ -23,7 +23,6 @@ namespace DublinBike.Models
                 context.Bike.AddRange(
                     new Bike
                     {
-                        Number = 1,
                         ContractName = "Dublin",
                         Name = "Pearse St",
                         Address = "",
@@ -38,7 +37,6 @@ namespace DublinBike.Models
 
                     new Bike
                     {
-                        Number = 2,
                         ContractName = "Dublin",
                         Name = "Mayor Street Upper",
                         Address = "",
