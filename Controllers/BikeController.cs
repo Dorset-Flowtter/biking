@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace DublinBike.Controllers
 {
-    public class HomeController : Controller
+    public class BikeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<BikeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public BikeController(ILogger<BikeController> logger)
         {
             _logger = logger;
         }
