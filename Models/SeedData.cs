@@ -25,7 +25,7 @@ namespace DublinBike.Models
                     {
                         ContractName = "Dublin",
                         Name = "Pearse St",
-                        Address = "",
+                        Address = "Pearse St",
                         Latitude = 45.345678M,
                         Longitude = 88.2766M,
                         Banking = true,
@@ -39,7 +39,7 @@ namespace DublinBike.Models
                     {
                         ContractName = "Dublin",
                         Name = "Mayor Street Upper",
-                        Address = "",
+                        Address = "Mayor Street Upper",
                         Latitude = 56.345M,
                         Longitude = 35.7809M,
                         Banking = false,
