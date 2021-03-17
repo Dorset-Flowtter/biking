@@ -63,17 +63,14 @@ namespace DublinBike.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Number,ContractName,Name,Address,Latitude,Longitude,Banking,AvailableBikes,AvailableStands,Capacity,Status")] Bike bike)
         {
-            Console.WriteLine("a");
             if (ModelState.IsValid)
             {
                 
-                Console.WriteLine("valide");
                 _context.Add(bike);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             
-            Console.WriteLine("return view");
             return View(bike);
         }
 
@@ -106,15 +103,10 @@ namespace DublinBike.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Number,ContractName,Name,Address,Latitude,Longitude,Banking,AvailableBikes,AvailableStands,Capacity,Status")] Bike bike)
         {
-            Console.WriteLine("yo les man");
-            Console.WriteLine(id);
-            Console.WriteLine(bike.Number);
             if (id != bike.Number)
             {
                 return NotFound();
             }
-
-            Console.WriteLine("tes");
 
             if (ModelState.IsValid)
             {
