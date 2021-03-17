@@ -20,11 +20,6 @@ namespace DublinBike.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         public IActionResult Create()
         {
             return View();
@@ -45,7 +40,18 @@ namespace DublinBike.Controllers
             return View();
         }
 
-        
+        // GET: Bikes
+        public async Task<IActionResult> Index(string searchString)
+        {
+            var bikes = from currentBikeItem in _context.Bike select currentBikeItem;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                bikes = bikes.Where(s => s.Name.Contains(searchString));
+            }
+
+            return View(await bikes.ToListAsync());
+        }
 
         // POST: Bike/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
