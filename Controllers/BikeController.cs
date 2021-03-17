@@ -1,21 +1,21 @@
-﻿using System;
+﻿using DublinBike.Models;
+using DublinBike.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DublinBike.Data;
-using DublinBike.Models;
-
 
 namespace DublinBike.Controllers
 {
     public class BikeController : Controller
     {
-        private readonly MvcMovieContext _context;
+        private readonly MvcBikeContext _context;
 
-        public MoviesController(MvcMovieContext context)
+        public BikeController(MvcBikeContext context)
         {
             _context = context;
         }
@@ -44,6 +44,7 @@ namespace DublinBike.Controllers
         {
             return View();
         }
+
 
         private bool BikeExists(int id)
         {
