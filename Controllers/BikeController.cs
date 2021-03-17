@@ -39,6 +39,23 @@ namespace DublinBike.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var bike = await _context.Bike
+                .FirstOrDefaultAsync(m => m.Number == id);
+            if (bike == null)
+            {
+                return NotFound();
+            }
+
+            return View(bike);
+        }
+
         // POST: Bike/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
