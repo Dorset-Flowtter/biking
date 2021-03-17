@@ -11,11 +11,11 @@ namespace DublinBike.Controllers
 {
     public class BikeController : Controller
     {
-        private readonly ILogger<BikeController> _logger;
+        private readonly MvcBikeContext _context;
 
-        public BikeController(ILogger<BikeController> logger)
+        public MvcBikeContext(MvcBikeContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -42,6 +42,42 @@ namespace DublinBike.Controllers
         {
             return View();
         }
+
+        // POST: Bike/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Bike bike)
+        {
+            if (id != bike.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(movie);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!MovieExists(movie.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(movie);
+        }
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
