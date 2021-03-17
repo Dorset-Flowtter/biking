@@ -24,11 +24,11 @@ namespace DublinBike.Models
 		public string Address { get; set; }
 
 		[Required]
-		[Range(0, 110.574)]
+		[Range(-90, 90)]
 		public decimal Latitude { get; set; }
 
 		[Required]
-		[Range(0, 111.320)]
+		[Range(-180, 180)]
 		public decimal Longitude { get; set; }
 
 		[Required]
