@@ -39,11 +39,6 @@ namespace DublinBike.Controllers
             return View();
         }
 
-        public IActionResult Edit()
-        {
-            return View();
-        }
-
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -83,18 +78,36 @@ namespace DublinBike.Controllers
             return _context.Bike.Any(e => e.Number == id);
         }
 
+        // GET: Bike/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var bike = await _context.Bike.FindAsync(id);
+            if (bike == null)
+            {
+                return NotFound();
+            }
+            return View(bike);
+        }
+
         // POST: Bike/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ContractName,Name,Address,Latitude,Longitude,Banking,AvailableBikes,AvailableStands,Capacity,Status")] Bike bike)
+        public async Task<IActionResult> Edit(int id, [Bind("Number,ContractName,Name,Address,Latitude,Longitude,Banking,AvailableBikes,AvailableStands,Capacity,Status")] Bike bike)
         {
             Console.WriteLine("yo les man");
-            // if (id != bike.Number)
-            // {
-            //     return NotFound();
-            // }
+            Console.WriteLine(id);
+            Console.WriteLine(bike.Number);
+            if (id != bike.Number)
+            {
+                return NotFound();
+            }
 
             Console.WriteLine("tes");
 

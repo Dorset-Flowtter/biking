@@ -11,17 +11,17 @@ namespace DublinBike.Models
 
         [Required]
         [StringLength(128, MinimumLength = 3)]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z ]*$")]
         public string ContractName { get; set; }
 
         [Required]
         [StringLength(128, MinimumLength = 3)]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z ]*$")]
         public string Name { get; set; }
 
         [Required]
         [StringLength(256, MinimumLength = 3)]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z0-9]*$")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z0-9 ]*$")]
         public string Address { get; set; }
 
         [Required]
