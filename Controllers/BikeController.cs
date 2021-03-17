@@ -39,6 +39,11 @@ namespace DublinBike.Controllers
             return View();
         }
 
+        public IActionResult Edit()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -83,12 +88,15 @@ namespace DublinBike.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Number,ContractName,Name,Address,Latitude,Longitude,Banking,AvailableBikes,AvailableStands,Capacity,Status")] Bike bike)
+        public async Task<IActionResult> Edit(int id, [Bind("ContractName,Name,Address,Latitude,Longitude,Banking,AvailableBikes,AvailableStands,Capacity,Status")] Bike bike)
         {
-            if (id != bike.Number)
-            {
-                return NotFound();
-            }
+            Console.WriteLine("yo les man");
+            // if (id != bike.Number)
+            // {
+            //     return NotFound();
+            // }
+
+            Console.WriteLine("tes");
 
             if (ModelState.IsValid)
             {
